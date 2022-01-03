@@ -26,15 +26,13 @@ func QiitaUi(n int, word string) {
 	var nodes []*widgets.TreeNode
 
 	for _, item := range items {
+		createdAt := item.CreatedAt.Format("2006/01/02")
+
 		node := widgets.TreeNode{
-			Value: nodeValue(item.Title),
+			Value: nodeValue(fmt.Sprintf("%s: %s", createdAt, item.Title)),
 			Nodes: []*widgets.TreeNode{
 				{
 					Value: nodeValue(fmt.Sprintf("cmd+click → %s", item.Url)),
-					Nodes: nil,
-				},
-				{
-					Value: nodeValue(fmt.Sprintf("CreatedAt: %s", item.CreatedAt)),
 					Nodes: nil,
 				},
 			},
