@@ -40,8 +40,7 @@ func appSetting() {
 			},
 		},
 		Action: func(c *cli.Context) error {
-			// ui.QiitaUi(c.Int("number"), c.String("word"))
-			ui.QiitaUi(c.Int("number"), "react")
+			ui.QiitaUi(c.Int("number"), c.String("word"))
 			return nil
 		},
 	}
