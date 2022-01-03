@@ -1,6 +1,8 @@
 package main
 
 import (
+	// "fmt"
+	// "github.com/Yota-K/qiita-cui-app/api"
 	"github.com/Yota-K/qiita-cui-app/setting"
 	"github.com/Yota-K/qiita-cui-app/ui"
 	"github.com/urfave/cli/v2"
@@ -8,6 +10,9 @@ import (
 )
 
 func main() {
+	// hoge := api.GetQiitaItems(10, 10, "react")
+	// fmt.Println(hoge)
+	// fmt.Println(len(hoge))
 	appSetting()
 }
 
@@ -21,6 +26,14 @@ func appSetting() {
 				Aliases: []string{"n"},
 				Value:   10,
 				Usage:   "Set number of posts.",
+			},
+			&cli.IntFlag{
+				// LGTM数で記事をソート
+				// -p 20
+				Name:    "popular",
+				Aliases: []string{"p"},
+				Value:   0,
+				Usage:   "Get Popular Posts. Please set LGTM count.",
 			},
 			&cli.StringFlag{
 				Name:    "word",
@@ -40,7 +53,7 @@ func appSetting() {
 			},
 		},
 		Action: func(c *cli.Context) error {
-			ui.QiitaUi(c.Int("number"), c.String("word"))
+			ui.QiitaUi(c.Int("number"), c.Int("popular"), c.String("word"))
 			return nil
 		},
 	}
