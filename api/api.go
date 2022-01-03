@@ -11,11 +11,13 @@ import (
 )
 
 type Item struct {
-	Title     string    `json:"title"`
-	Url       string    `json:"url"`
-	CreatedAt time.Time `json:"created_at"`
+	CreatedAt  time.Time `json:"created_at"`
+	Title      string    `json:"title"`
+	LikesCount int       `json:"likes_count"`
+	Url        string    `json:"url"`
 }
 
+// Qiita APIを叩いてQiitaの投稿を取得する
 func GetQiitaItems(n int, word string) []Item {
 	// per_page 1ページあたりに含まれる要素数
 	baseUrl := fmt.Sprintf("https://qiita.com/api/v2/items?page=1&per_page=%s", strconv.Itoa(n))

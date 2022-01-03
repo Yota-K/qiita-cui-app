@@ -8,6 +8,7 @@ import (
 	"github.com/gizak/termui/v3/widgets"
 
 	"github.com/Yota-K/qiita-cui-app/api"
+	"strconv"
 )
 
 type nodeValue string
@@ -31,6 +32,10 @@ func QiitaUi(n int, word string) {
 		node := widgets.TreeNode{
 			Value: nodeValue(fmt.Sprintf("%s: %s", createdAt, item.Title)),
 			Nodes: []*widgets.TreeNode{
+				{
+					Value: nodeValue(fmt.Sprintf("LGTM: %s", strconv.Itoa(item.LikesCount))),
+					Nodes: nil,
+				},
 				{
 					Value: nodeValue(fmt.Sprintf("cmd+click → %s", item.Url)),
 					Nodes: nil,
