@@ -59,13 +59,13 @@ func QiitaUi(n, p int, w string) {
 
 		Keybindings(t)
 	} else {
-		p := widgets.NewParagraph()
-		notFoundPosts(p)
+		notFoundPosts()
 	}
 }
 
 // 条件に合致する投稿が0件の時の処理
-func notFoundPosts(p *widgets.Paragraph) {
+func notFoundPosts() {
+	p := widgets.NewParagraph()
 	p.Title = Title
 	p.Text = "Not found posts."
 	x, y := ui.TerminalDimensions()
