@@ -13,8 +13,9 @@ import (
 type Item struct {
 	CreatedAt  time.Time `json:"created_at"`
 	Title      string    `json:"title"`
-	LikesCount int       `json:"likes_count"`
 	Url        string    `json:"url"`
+	LikesCount int       `json:"likes_count"`
+	UpdatedAt  time.Time `json:"updated_at"`
 }
 
 // Qiita APIを叩いてQiitaの投稿を取得する

@@ -32,16 +32,17 @@ func QiitaUi(n, p int, w string) {
 
 		for _, item := range items {
 			createdAt := item.CreatedAt.Format("2006/01/02")
+			updatedAt := item.UpdatedAt.Format("2006/01/02")
 
 			node := widgets.TreeNode{
 				Value: nodeValue(fmt.Sprintf("%s: %s", createdAt, item.Title)),
 				Nodes: []*widgets.TreeNode{
 					{
-						Value: nodeValue(fmt.Sprintf("LGTM: %s", strconv.Itoa(item.LikesCount))),
+						Value: nodeValue(fmt.Sprintf("cmd+click → %s", item.Url)),
 						Nodes: nil,
 					},
 					{
-						Value: nodeValue(fmt.Sprintf("cmd+click → %s", item.Url)),
+						Value: nodeValue(fmt.Sprintf("LGTM: %s  updatedAt: %s", strconv.Itoa(item.LikesCount), updatedAt)),
 						Nodes: nil,
 					},
 				},
@@ -51,6 +52,7 @@ func QiitaUi(n, p int, w string) {
 		}
 
 		t := widgets.NewTree()
+
 		t.Title = Title
 		t.TextStyle = ui.NewStyle(ui.ColorGreen)
 		x, y := ui.TerminalDimensions()
