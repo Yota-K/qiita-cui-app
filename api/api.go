@@ -14,8 +14,13 @@ type Item struct {
 	CreatedAt  time.Time `json:"created_at"`
 	Title      string    `json:"title"`
 	Url        string    `json:"url"`
+	Tags       []*Tag    `json:"tags"`
 	LikesCount int       `json:"likes_count"`
 	UpdatedAt  time.Time `json:"updated_at"`
+}
+
+type Tag struct {
+	Name string `json:"name"`
 }
 
 // Qiita APIを叩いてQiitaの投稿を取得する

@@ -3,6 +3,7 @@ package ui
 import (
 	"fmt"
 	"log"
+	"strings"
 
 	ui "github.com/gizak/termui/v3"
 	"github.com/gizak/termui/v3/widgets"
@@ -34,11 +35,26 @@ func QiitaUi(n, p int, w string) {
 			createdAt := item.CreatedAt.Format("2006/01/02")
 			updatedAt := item.UpdatedAt.Format("2006/01/02")
 
+			tags := item.Tags
+			var tagSlice []string
+			var tagStr string
+
+			if len(tags) != 0 {
+				for _, tag := range tags {
+					tagSlice = append(tagSlice, tag.Name)
+					tagStr = strings.Join(tagSlice, ", ")
+				}
+			}
+
 			node := widgets.TreeNode{
 				Value: nodeValue(fmt.Sprintf("%s: %s", createdAt, item.Title)),
 				Nodes: []*widgets.TreeNode{
 					{
 						Value: nodeValue(fmt.Sprintf("cmd+click → %s", item.Url)),
+						Nodes: nil,
+					},
+					{
+						Value: nodeValue(fmt.Sprintf("Tags: %s", tagStr)),
 						Nodes: nil,
 					},
 					{
